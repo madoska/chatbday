@@ -2,6 +2,7 @@ const passport = require('passport');
 const session = require('express-session');
 const facebookStrategy = require('passport-facebook').Strategy;
 const Users = require('../models/Users');
+const usersRouter = require('../routes/users');
 
 passport.serializeUser(function (user, done) {
     done(null, user)
@@ -28,8 +29,13 @@ passport.use(new facebookStrategy(
 
             // if user with matching userID found, log them in
             if (user) {
-                console.log(user)
-                return done(null, user);
+                if ({ 'birthday': null }) {
+                    console.log("You do not have a birthday");
+                    return done(null, user);
+                } else {
+                    console.log(user)
+                    return done(null, user);
+                }
             } else {
                 // if userID does not exist in collection, create new user
                 const newUser = new Users();
