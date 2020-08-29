@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+</head>
+
+<body>
+    <input type="date" class="birthday" name="date" id="date">
+    <input type="button" class="btnSignup" value="submit">
+
+    <script>
+        const signup = document.querySelector(".btnSignup").addEventListener("click", function () {
+            const birthday = document.querySelector(".birthday").value;
+            console.log(birthday);
+        })
+    </script>
+</body>
+
+</html>
