@@ -3,9 +3,12 @@ const usersRouter = express.Router();
 const authController = require('../controllers/auth');
 const passport = require('passport');
 
-/* GET users listing. */
-usersRouter.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+usersRouter.get('/signup', function(req, res, next) {
+  res.render('signup', { title: 'Signup' });
+});
+
+usersRouter.get('/birthday', function(req, res, next) {
+  res.render('birthday', { title: 'Signup' });
 });
 
 usersRouter.get('/auth/facebook', passport.authenticate('facebook', {
