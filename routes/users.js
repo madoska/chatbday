@@ -3,8 +3,8 @@ const usersRouter = express.Router();
 const authController = require('../controllers/auth');
 const passport = require('passport');
 
-usersRouter.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'Signup' });
+usersRouter.get('/join', function(req, res, next) {
+  res.render('join', { title: 'Signup' });
 });
 
 usersRouter.get('/birthday', function(req, res, next) {
