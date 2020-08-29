@@ -22,9 +22,19 @@ usersRouter.get('/auth/facebook/callback',
   })
 )
 
-usersRouter.get('/profile', (req,res) => {
+usersRouter.get('/profile', birthdayCheck, (req,res) => {
   res.send("you are a valid user")
 })
+
+function birthdayCheck(req,res,next){
+  if({'birthday' : null}){
+    console.log("you don't have a birthday")
+    res.redirect('/')
+  } else {
+    console.log("you do have a birthday")
+    res.redirect('/birthday')
+  }
+}
 
 usersRouter.get('/', (req,res) => {
   res.send("you are not a valid user")

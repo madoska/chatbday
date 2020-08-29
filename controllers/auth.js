@@ -29,13 +29,8 @@ passport.use(new facebookStrategy(
 
             // if user with matching userID found, log them in
             if (user) {
-                if ({ 'birthday': null }) {
-                    console.log("You do not have a birthday");
-                    return done(null, user);
-                } else {
-                    console.log(user)
-                    return done(null, user);
-                }
+                console.log(user)
+                return done(null, user);
             } else {
                 // if userID does not exist in collection, create new user
                 const newUser = new Users();
