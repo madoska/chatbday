@@ -2,7 +2,6 @@ const passport = require('passport');
 const session = require('express-session');
 const facebookStrategy = require('passport-facebook').Strategy;
 const Users = require('../models/Users');
-const usersRouter = require('../routes/users');
 
 passport.serializeUser(function (user, done) {
     done(null, user)
@@ -17,7 +16,7 @@ passport.use(new facebookStrategy(
         clientID: "618996698804528",
         clientSecret: "3b463b329a47e06b649636ea758107e4",
         callbackURL: "http://localhost:3000/auth/facebook/callback",
-        profileFields: ['id', 'name', 'email', 'picture.type(large)', 'birthday']
+        profileFields: ['id', 'displayName', 'name', 'email', 'picture.type(large)', 'birthday']
     },
     (accessToken, refreshToken, profile, done) => {
         // search for user's ID in mongo collection
@@ -29,7 +28,12 @@ passport.use(new facebookStrategy(
 
             // if user with matching userID found, log them in
             if (user) {
-                console.log(user)
+                if (!user.birthday) {
+                    console.log("empty birthday")
+                } else {
+                    console.log("birthday filled in ")
+                }
+
                 return done(null, user);
             } else {
                 // if userID does not exist in collection, create new user
